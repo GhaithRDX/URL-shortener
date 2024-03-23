@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URL Shortener</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #6dd5ed, #ffffff); /* Updated gradient colors */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Changed font for a modern look */
+            color: #333; /* Added text color for better readability */
+        }
+        .container {
+            width: 60%;
+            margin: auto;
+            padding: 50px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+            border-radius: 8px;
+        }
+        input[type="text"],input[type="url"], button {
+            width: 100%;
+            padding: 15px 20px;
+            margin: 10px 0; 
+            box-sizing: border-box;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        input[type="text"]:focus {
+            border-color: #6dd5ed;
+            outline: none; 
+        }
+        button {
+            background-color: #4ca1af;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #3598a6; 
+            opacity: 1;
+        }
+        label {
+            display: block; 
+            margin-bottom: 5px; 
+            font-weight: bold; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form method = 'POST' action='/url/'>
+            {% csrf_token %}
+            <label for="url">Enter your URL:</label>
+            <input id="url" name="url" type="url"
+            placeholder="https://www.xyz.com"
+            pattern="https://.*" size="50"
+            required  
+            value={{old_url}}
+             >
+            <label for="shorturl">Shortened URL:</label>
+            <input type="text" id="shorturl" name="shorturl" readonly value={{new_url}} >
+            <button type="submit">Shorten URL</button>
+        </form>
+    </div>
+</body>
+</html>
